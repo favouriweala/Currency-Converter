@@ -1,15 +1,15 @@
-function AmountInput() {
-    return(
-        <div>
-            <select>
-                <option value="USD">USD - us US DOLLAR</option>
-                <option value="NGN">NGN - ng NIGERIA NAIRA</option>
-                <option value="EUR">EUR - eu EURO</option>
-            </select>
-            <h2>$500</h2>
-        </div>
-        
-    )
+function AmountInput(props) {
+  return (
+    <div className="mb-5">
+      {/* <input
+        type="number"
+        value={props.amount}
+        onChange={(e) => props.setAmount(e.target.value)}
+        placeholder="Enter amount"
+        className="w-full bg-slate-700 text-white text-3xl p-4 rounded-2xl outline-none placeholder:text-slate-400"
+      /> */}
+    </div>
+  );
 }
 
-export default AmountInput
+export default AmountInput;

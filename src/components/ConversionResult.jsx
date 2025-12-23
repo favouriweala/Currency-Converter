@@ -1,14 +1,18 @@
-function ConversionResult () {
-    return(
-        <div>
-            <select>
-                <option value="USD">USD - us US DOLLAR</option>
-                <option value="NGN">NGN - ng NIGERIA NAIRA</option>
-                <option value="EUR">EUR - eu EURO</option>
-            </select>
-            <h2>721,270.00</h2>
-        </div>
-    )
+function ConversionResult(props) {
+  const convertedAmount =
+    ((props.rates[props.toCurrency] / props.rates[props.fromCurrency]) * props.amount)
+      .toFixed(2);
+
+  return (
+    <div className="mt-5 bg-slate-700 rounded-2xl p-4 text-white">
+
+      <h2 className="text-2xl font-semibold">
+        {props.amount} {props.fromCurrency}
+        <span className="text-slate-400 mx-2">=</span>
+        {convertedAmount} {props.toCurrency}
+      </h2>
+    </div>
+  );
 }
 
-export default ConversionResult
+export default ConversionResult;

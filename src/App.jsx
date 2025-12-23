@@ -11,6 +11,11 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null); 
 
+  const [fromCurrency, setFromCurrency] = useState("USD");
+  const [toCurrency, setToCurrency] = useState("NGN");
+
+  const [amount, setAmount] = useState(1);
+
   useEffect(() => {
     async function fetchRates() {
       try {
@@ -34,6 +39,12 @@ function App() {
     fetchRates();
   }, []); 
 
+ const swapCurrencies = () => {
+    const swap = fromCurrency;
+    setFromCurrency(toCurrency);
+    setToCurrency(swap);
+  };
+
   if (loading) {
     return (
       <div className='bg-white-600'>
@@ -55,12 +66,36 @@ function App() {
   }
 
   return (
-    <div className='bg-white-600'>
-      <Header/>
-      <AmountInput/>
-      <CurrencySelector rates={rates}/>
-      <ConversionResult rates={rates}/>
+    <div className="w-screen h-screen mx-auto bg-[#364859] p-5 text-white pt-7">
+      <Header />
+
+      {/* <AmountInput
+        amount={amount}
+        setAmount={setAmount}
+      /> */}
+
+      <CurrencySelector
+        rates={rates}
+        fromCurrency={fromCurrency}
+        toCurrency={toCurrency}
+        setFromCurrency={setFromCurrency}
+        setToCurrency={setToCurrency}
+        swapCurrencies={swapCurrencies}
+        
+        amount={amount}
+        setAmount={setAmount}
+      />
+
+
+      <ConversionResult
+        amount={amount}
+        rates={rates}
+        fromCurrency={fromCurrency}
+        toCurrency={toCurrency}
+      />
     </div>
   );
+
+
 } 
 export default App
